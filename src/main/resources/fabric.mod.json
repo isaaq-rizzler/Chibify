@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "chibify",
+  "version": "${version}",
+  "name": "Chibify",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "modmenu": ["net.chibify.chibify.config.ModMenuIntegration"],
+    "client": [
+      "net.chibify.chibify.client.ChibifyClient"
+    ],
+    "main": [
+      "net.chibify.chibify.Chibify"
+    ]
+  },
+  "mixins": [
+    "chibify.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
