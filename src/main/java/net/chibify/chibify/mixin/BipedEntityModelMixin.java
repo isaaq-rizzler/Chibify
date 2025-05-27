@@ -55,8 +55,6 @@ public abstract class BipedEntityModelMixin<T extends BipedEntityRenderState> ex
         Entity entity = ((IEntityRenderState) bipedEntityRenderState).chibify$getEntity();
         if (!(entity instanceof LivingEntity livingEntity) || (entity == Chibify.mc.player && !ModConfig.INSTANCE.shrinkSelf)) return;
         if (livingEntity instanceof PlayerEntity) {
-//            this.head.pitch += 5.4f;
-
             this.head.yScale = 1.0F;
             this.head.xScale = 1.0F;
             this.head.zScale = 1.0F;
@@ -64,7 +62,7 @@ public abstract class BipedEntityModelMixin<T extends BipedEntityRenderState> ex
 
             this.rightArm.yScale = 0.5F;
             this.rightArm.pivotY = 13.0F;
-            this.rightArm.pivotX += 1.4f;
+            this.rightArm.pivotX += 1.45f;
             this.rightArm.zScale = 0.7f;
             this.rightArm.xScale = 0.7f;
 
@@ -72,19 +70,19 @@ public abstract class BipedEntityModelMixin<T extends BipedEntityRenderState> ex
             this.leftArm.pivotY = 13.0F;
             this.leftArm.zScale = 0.7f;
             this.leftArm.xScale = 0.7f;
-            this.leftArm.pivotX -= 1.4f;
+            this.leftArm.pivotX -= 1.45f;
 
             this.leftLeg.yScale = 0.5F;
             this.leftLeg.pivotY = 18.0F;
             this.leftLeg.zScale = 0.7f;
             this.leftLeg.xScale = 0.7f;
-            this.leftLeg.pivotX -= 0.6f;
+            this.leftLeg.pivotX -= 0.55f;
 
             this.rightLeg.pivotY = 18.0F;
             this.rightLeg.yScale = 0.5F;
             this.rightLeg.zScale = 0.7f;
             this.rightLeg.xScale = 0.7f;
-            this.rightLeg.pivotX += 0.6f;
+            this.rightLeg.pivotX += 0.55f;
 
             this.body.pivotY = 12.0F;
             this.body.yScale = 0.5f;
@@ -95,27 +93,12 @@ public abstract class BipedEntityModelMixin<T extends BipedEntityRenderState> ex
             this.hat.pivotY = 0.0F;
 
             if (livingEntity.isInSneakingPose()) {
-
                 this.body.pitch = 0.5F;
-//                this.rightLeg.pivotZ += 4.0f;
-//                this.leftLeg.pivotZ += 4.0f;
+                this.rightLeg.pivotY -= 1.0f;
+                this.rightLeg.pivotZ -= 1.5f;
 
-//                ModelPart var20 = this.rightArm;
-//                var20.pitch += 0.4F;
-//                var20 = this.leftArm;
-//                var20.pitch += 0.4F;
-//                var20 = this.rightLeg;
-//                var20.pivotZ += 4.0F;
-//                var20 = this.leftLeg;
-//                var20.pivotZ += 4.0F;
-//                var20 = this.head;
-//                var20.pivotY += 4.2F;
-//                var20 = this.body;
-//                var20.pivotY += 1.2F;
-//                var20 = this.leftArm;
-//                var20.pivotY += 3.2F;
-//                var20 = this.rightArm;
-//                var20.pivotY += 3.2F;
+                this.leftLeg.pivotY -= 1.0f;
+                this.leftLeg.pivotZ -= 1.5f;
             }
         }
     }

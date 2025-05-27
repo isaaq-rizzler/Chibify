@@ -31,7 +31,7 @@ public abstract class ElytraFeatureRendererMixin<S extends BipedEntityRenderStat
         if (!(entity instanceof LivingEntity livingEntity) || (entity == Chibify.mc.player && !ModConfig.INSTANCE.shrinkSelf)) return;
         if (livingEntity instanceof PlayerEntity) {
             matrixStack.scale(0.5f, 0.5f, 0.5f);
-            matrixStack.translate(0f,1.45f,-0.125f);
+            matrixStack.translate(0f,1.42f,-0.05f);
         }
     }
 
