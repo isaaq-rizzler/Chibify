@@ -28,7 +28,7 @@ public abstract class ElytraFeatureRendererMixin<S extends BipedEntityRenderStat
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;translate(FFF)V", shift = At.Shift.AFTER))
     private void onRender(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, S bipedEntityRenderState, float f, float g, CallbackInfo ci){
         Entity entity = ((IEntityRenderState) bipedEntityRenderState).chibify$getEntity();
-        if (!(entity instanceof LivingEntity livingEntity) || (entity == Chibify.mc.player && !ModConfig.shrinkSelf)) return;
+        if (!(entity instanceof LivingEntity livingEntity) || (entity == Chibify.mc.player && !ModConfig.INSTANCE.shrinkSelf)) return;
         if (livingEntity instanceof PlayerEntity) {
             matrixStack.scale(0.5f, 0.5f, 0.5f);
             matrixStack.translate(0f,1.45f,-0.125f);

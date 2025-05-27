@@ -14,7 +14,7 @@ public abstract class CameraMixin {
 
     @Inject(method = "updateEyeHeight", at = @At("TAIL"))
     private void lowerCameraY(CallbackInfo ci) {
-        if (!ModConfig.shrinkSelf || !ModConfig.AccurateEyeHeight) return;
+        if (!ModConfig.INSTANCE.shrinkSelf || !ModConfig.INSTANCE.AccurateEyeHeight) return;
 
         this.cameraY *= 0.78f;
     }

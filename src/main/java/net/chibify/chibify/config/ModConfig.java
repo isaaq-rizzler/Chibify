@@ -18,11 +18,10 @@ import java.util.List;
 public class ModConfig {
     public static final Path CONFIG_FILE = Path.of("config").resolve("chibify" + ".json");
 
-    public static ModConfig CONFIG = new ModConfig();
-    public static ModConfig DEFAULT = new ModConfig();
+    public static ModConfig INSTANCE = new ModConfig();
 
-    public static boolean shrinkSelf = false;
-    public static boolean AccurateEyeHeight = false;
+    public boolean shrinkSelf = false;
+    public boolean AccurateEyeHeight = false;
 
     static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
@@ -30,37 +29,24 @@ public class ModConfig {
         File file = CONFIG_FILE.toFile();
 
         if (file.exists()) {
-            try (BufferedReader fileReader = new BufferedReader(
+            try (BufferedReader reader = new BufferedReader(
                     new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)
             )) {
-                ModConfig.CONFIG = GSON.fromJson(fileReader, ModConfig.class);
+                INSTANCE = GSON.fromJson(reader, ModConfig.class);
             } catch (IOException e) {
-                throw new RuntimeException("Particle Rain config failed to load: ", e);
+                throw new RuntimeException("Failed to load Chibify config", e);
             }
-        }
-        if (ModConfig.CONFIG == null) {
-            ModConfig.CONFIG = new ModConfig();
+        } else {
+            save();
         }
     }
 
     public static void save() {
         File file = CONFIG_FILE.toFile();
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
-            GSON.toJson(ModConfig.CONFIG, writer);
+            GSON.toJson(INSTANCE, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    @Retention(RetentionPolicy.RUNTIME)
-    @Target({ElementType.FIELD})
-    public @interface Percentage {}
-
-    @Retention(RetentionPolicy.RUNTIME)
-    @Target({ElementType.TYPE})
-    public @interface OverrideName { String newName(); }
-
-    @Retention(RetentionPolicy.RUNTIME)
-    @Target({ElementType.FIELD})
-    public @interface ReloadsResources {}
 }

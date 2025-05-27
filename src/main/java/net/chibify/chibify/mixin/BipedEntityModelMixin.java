@@ -53,7 +53,7 @@ public abstract class BipedEntityModelMixin<T extends BipedEntityRenderState> ex
     )
     private void test(T bipedEntityRenderState, CallbackInfo ci) {
         Entity entity = ((IEntityRenderState) bipedEntityRenderState).chibify$getEntity();
-        if (!(entity instanceof LivingEntity livingEntity) || (entity == Chibify.mc.player && !ModConfig.shrinkSelf)) return;
+        if (!(entity instanceof LivingEntity livingEntity) || (entity == Chibify.mc.player && !ModConfig.INSTANCE.shrinkSelf)) return;
         if (livingEntity instanceof PlayerEntity) {
 //            this.head.pitch += 5.4f;
 
